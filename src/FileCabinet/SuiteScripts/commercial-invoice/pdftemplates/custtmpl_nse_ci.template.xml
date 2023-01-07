@@ -1,0 +1,359 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+	<link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}" src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}" src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+    <macrolist>
+    	<macro id="nlheader">
+  			<img class="ImgLogo" src="${record.footerInfo.logoUrl}"  width='160px' height='100px'/><br />
+			<span class="TopAdress">${record.footerInfo.addressFormated}</span>
+			<table width="100%" class="InfoTable"> 
+				<tr>
+					<td width="48%" class="ShiftTd">&nbsp;</td>
+					<td width="21%" align="left" class="ShiftTd">Invoice #</td>
+					<td width="31%" align="left" class="ShiftTd">: ${record.salesOrderNr}</td>
+				</tr>
+				<tr > 
+					<td class="ShiftTd">&nbsp;</td>
+					<td align="left" class="ShiftTd">Page</td>
+					<td align="left" class="ShiftTd">: <pagenumber/> of <totalpages/></td>
+				</tr>
+			</table>
+		</macro>
+		<macro id="first-header">
+  			<img class="ImgLogo" src="${record.footerInfo.logoUrl}"  width='160px' height='100px'/> <br />
+			<span class="TopAdress">${record.footerInfo.addressFormated}</span>
+			<table class="TopParagraph"> 
+				<tr>
+					<td class="TopParagraph">${record.billingAddress}</td>
+				</tr>
+			</table>
+		</macro>
+		<macro id="nlfooter">
+            <table class="footer"  style="width:100%">
+				<tr>
+					<td width="33.33%" align="center" class="FooterText"><b>${record.footerInfo.legalname}</b><br /> 
+						${record.footerInfo.addressFormated?replace(record.footerInfo.legalname + ", ", "")}
+					</td>
+					<td width="33.33%" align="center" class="FooterText">
+						<b>T </b>${record.footerInfo.phone}<br />
+						<#if record.footerInfo.fax?has_content && record.footerInfo.fax != ""><b>F </b>${record.footerInfo.fax}<br /></#if>
+						<b>E </b>${record.footerInfo.email}<br />
+						<b>W </b>${record.footerInfo.website}<br />
+						<b>VAT </b>${record.footerInfo.vatId}<br />
+					</td>
+					<td width="33.33%" align="center" class="FooterText">&nbsp;</td>
+				</tr>
+			</table>
+        </macro>
+    </macrolist>
+    <style type="text/css">* {
+			font-family: NotoSans, sans-serif;
+		}
+		#page1 {
+			header: first-header !important;
+		}
+        table {
+            font-size: 9pt;
+            table-layout: fixed;
+        }
+        th {
+            font-weight: bold;
+            font-size: 8pt;
+            vertical-align: middle;
+            padding: 5px 6px 3px;
+            color: #333333;
+			margin-bottom: 3px;
+        }
+        td {
+            padding: 4px 6px;
+        }
+		td p { align:left }
+        b {
+            font-weight: bold;
+            color: #333333;
+        }
+        table.header td {
+            padding: 0;
+            font-size: 10pt;
+        }
+        table.footer td {
+            padding: 0;
+            font-size: 7pt;
+        }
+        table.total {
+            page-break-inside: avoid;
+        }
+        tr.totalrow {
+            background-color: #e3e3e3;
+            line-height: 200%;
+        }
+        td.totalboxtop {
+            font-size: 12pt;
+            background-color: #e3e3e3;
+        }
+        td.addressheader {
+            font-size: 8pt;
+            padding-top: 6px;
+            padding-bottom: 2px;
+        }
+        td.address {
+            padding-top: 0;
+        }
+        td.totalboxmid {
+            font-size: 28pt;
+            padding-top: 20px;
+            background-color: #e3e3e3;
+        }
+        td.totalboxbot {
+            background-color: #e3e3e3;
+            font-weight: bold;
+        }
+        span.number {
+            font-size: 16pt;
+        }
+        span.itemname {
+            font-weight: bold;
+            line-height: 150%;
+        }
+		.title{
+			font-size: 22.6px;
+			color: #2f77ad;
+			font-weight: bold;
+			text-align:left;
+			padding: 0;
+			margin: 8px 0px 8px 0px;
+		}
+		.body{
+			margin-top:50px
+		}
+		.body tr.thead{
+			border-top: 2px solid black; 
+			border-bottom: 2px solid black;
+		}
+		  tr.itemdiscount td {
+            padding-bottom: 12px;
+            padding-top: 1px;
+        }
+		  tr.itemtable td {
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+        table.body tr {
+            padding-top: 2px;
+        }
+		.Total .TotalTr{
+			border-top: 1.2px solid black; 
+			text-align:left;
+		}
+		.Total .LineTotal{
+			border-top: 1.4px solid black; 
+			border-bottom: 1.4px solid black;
+			text-align:center;
+			padding-top:12px;
+		}
+		.ShiftTd{
+			margin:0px;
+			padding:0px;
+		}
+		.InfoTable{
+			padding:0px;
+		}
+		.ImgLogo{
+			float:left;
+			margin-top:15px;
+		}
+		.FooterText{
+			color:#4f7dbb;
+		}
+		.FooterText b{
+			color:#214d8e;
+		}
+		.TopAdress{
+			 font-size: 8px;
+			 color:#4f7dbb;
+			 float:left;
+			 padding-left: 0px;
+		}
+		.TopParagraph{
+			margin:0;
+			padding:0px;
+			font-size:10px;
+			text-align:left;	
+		}
+	</style>
+</head>
+
+<body header="nlheader" header-height="15%" footer="nlfooter" footer-height="24pt" padding="0.5in 0.5in 0.5in 0.5in" size="A4">
+	<table class="InfoTable" style="width:100%">
+		<tr>
+			<td width="48%" class="ShiftTd" >&nbsp;</td>
+			<td width="21%" align="left" class="ShiftTd">Contact</td>
+			<td width="31%" align="left" class="ShiftTd">: ${record.name}</td>
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>  
+			<td  align="left" class="ShiftTd">Phone</td>
+			<td  align="left" class="ShiftTd">: ${record.phone}</td> 
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td> 
+			<td  align="left" class="ShiftTd">Mobile</td>
+			<td  align="left" class="ShiftTd">: ${record.mobile}</td> 
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td> 
+			<td  align="left" class="ShiftTd">Email</td>
+			<td  align="left" class="ShiftTd">: ${record.email}</td>
+		</tr>
+		<tr > 
+			<td width="50%" class="ShiftTd"></td>	
+			<td colspan="2" width="50%"  align="left" class="title"> <span >Commercial Invoice</span></td> 
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>	
+			<td  align="left" class="ShiftTd">Invoice #</td>
+			<td  align="left" class="ShiftTd">: ${record.salesOrderNr}</td>
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>	
+			<td  align="left" class="ShiftTd">Date</td>
+			<td  align="left" class="ShiftTd">: ${record.todaysDate}</td>
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>
+			<td  align="left" style="margin:0px; padding:0px;"><p >Cosignee VAT #</p></td>
+			<td  align="left" style="margin:0px; padding:0px;"> : ${record.vatNr}  </td>
+		</tr>
+		<#if record.poNo?has_content && record.poNo!="">
+		<tr > 
+			<td  class="ShiftTd"></td>
+			<td  align="left" style="margin:0px; padding:0px;"><p >Customer Order #</p></td>
+			<td  align="left" style="margin:0px; padding:0px;">: ${record.poNo}</td>
+		</tr>
+		</#if>
+		<tr > 
+			<td  class="ShiftTd"></td>
+			<td  align="left" style="margin:0px; padding:0px;"><p >Shipment #</p></td>
+			<td  align="left" style="margin:0px; padding:0px;">: ${record.ifNumber} </td>
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>
+			<td  align="left" style="margin:0px; padding:0px;"><p >Shipment Date</p></td>
+			<td  align="left" style="margin:0px; padding:0px;">: ${record.ifDate} </td>
+		</tr>
+		<tr > 
+			<td  class="ShiftTd"></td>
+			<td  align="left" class="ShiftTd">Page</td>
+			<td width="35%" align="left" class="ShiftTd">: <pagenumber/> of <totalpages/></td>
+		</tr>
+	</table>
+	<table width="100%">
+		<tr>
+			<td width="57%" align="left" style="margin:0px; padding:0px; "><b>Ship To</b></td>
+		</tr>
+	</table>
+		<hr style="height:2px;border-width:0;color:black;background-color:black;align:left;width:3%"></hr>
+	<table width="100%">
+		<tr >  	 
+			<td width="57%" align="left" style="margin:0px; padding:0px; ">${record.shippingAddress}</td>
+		</tr>
+	</table>
+
+<#assign invoiceNetTotal = 0>
+<#assign invoiceTaxTotal = 0>
+<#if record.itemFields?has_content>
+	<table class="body" style="width: 100%; ">
+	
+<#assign itemposition = 1>
+	<#list record.itemFields as item>
+	<#if item_index==0>
+		<tr class="thead">
+			<th  width='5%'>Pos.</th>
+			<th  width='8%'>Qty.</th>
+			<th  width='47%'>Description</th>
+			<th  width='13%'>Discount</th>
+			<th  width='13%'>Unit Price</th>
+			<th  width='14%'>Net Price</th>
+		</tr>
+	</#if>
+	<#if item.itemtype != 'Discount'>
+		<tr class="itemtable" > 
+	<#else>
+		<tr class="itemdiscount">
+	</#if>
+			<td><#if item.itemtype != 'Discount'>${itemposition}<#assign itemposition = itemposition + 1></#if></td>
+			<td>${item.itemQuantity}</td>
+			<td><#if item.itemtype != 'Discount' >${item.itemName}<br />${item.itemDescription}<br />
+					<#if item.countryofmanufacture?has_content && item.countryofmanufacture != ''>Country of Manufacture: ${item.countryofmanufacture}<br /></#if>
+					<#if item.serials?has_content && item.serials != ''>Serial Numbers: ${item.serials}</#if>
+				<#else>${item.itemDescription}<br /></#if>
+			</td>
+			<td><#if item.itemtype == 'Discount' >${item.soItemUnitPrice}</#if> </td>   
+			<td><#if item.itemtype != 'Discount' >${item.soItemUnitPrice?number?string["#,###,##0.00"]}</#if> </td>
+			<td><#if item.itemtype == 'Discount' >${item.soItemAmount?number?string["#,###,##0.00"]}<#else>${(item.soItemUnitPrice?number * item.itemQuantity?number)?string["#,###,##0.00"]}</#if></td>
+			<#if item.itemtype == 'Discount' ><#assign invoiceNetTotal += (item.soItemAmount?number)><#else><#assign invoiceNetTotal += (item.soItemUnitPrice?number * item.itemQuantity?number)></#if>
+			<#assign invoiceTaxTotal += (item.soItemTaxUnitAmount?number * item.itemQuantity?number)> 
+		</tr>
+	</#list></table>
+</#if>
+
+	<table class="Total" style="width: 108mm; margin-top: 10px; float: left;" page-break-inside="avoid">
+		<tr class="TotalTr" >
+			<td width='37%'><b>Shipping Method</b></td>
+			<td width='63%'>: ${record.shippingMethod}</td>
+		</tr>
+		<tr>
+			<td><b>Terms of Payment</b></td>
+			<td>: ${record.termsOfPayment}</td>
+		</tr>
+	</table>
+	<table class="Total" style="width: 76mm; margin-top: 10px; float: left;" page-break-inside="avoid">
+		<tr class="TotalTr" >
+			<td width='49%'>Net Value</td>
+			<td width='19%'>${record.currencyname} </td>
+			<td width='32%' align="right">${invoiceNetTotal?string["#,###,##0.00"]}</td>
+		</tr>
+			<#if record.discounttotal?number != 0 > 
+		<tr>
+				<td>Discount ${record.discountrate}</td>
+				<td>${record.currencyname} </td>
+				<td align="right">${record.discounttotal?number?string["#,###,##0.00"]}</td>
+		</tr>	
+			</#if>
+			<#if record.shippingcost?number != 0 > 
+		<tr>
+				<td>Shipping Cost</td>
+				<td>${record.currencyname} </td>
+				<td align="right">${record.shippingcost?number?string["#,###,##0.00"]}</td>
+		</tr>	
+			</#if>
+		<tr>	    
+			<td>VAT ${record.taxPercent}</td> 
+			<td>${record.currencyname} </td>
+			<td align="right">${invoiceTaxTotal?string["#,###,##0.00"]}</td>
+		</tr>
+		<tr>
+			<td class="LineTotal"><b>Total</b></td>
+			<td class="LineTotal">${record.currencyname} </td>
+			<td class="LineTotal" align="right"><b>${(invoiceTaxTotal + invoiceNetTotal + record.shippingcost?number)?string["#,###,##0.00"]}</b></td>
+		</tr>
+	</table>
+
+<#if record.packages?has_content>
+	<table class="body" style="width: 55%; page-break-inside: avoid;">
+	<#list record.packages as package><#if package_index==0>
+		<tr class="thead">
+			<th width='25%'>Gross Weight</th>
+			<th width='35%'>Dimensions</th>
+			<th width='40%'>Tracking #</th>
+		</tr>
+		</#if>
+		<tr class="itemtable" > 
+			<td>${package.packageweight} kg</td>
+			<td>${package.packagedescr?replace("-", "<br />")} </td>
+			<td>${package.packagetrackingnumber}</td> 
+		</tr>
+	</#list></table>
+</#if>
+</body>
+</pdf>
